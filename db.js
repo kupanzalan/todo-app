@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 
-const DB_URI = 'mongodb+srv://kupanzalan:wBL1ZoRrmeQVjctU@cluster0.b0d3pcb.mongodb.net/?retryWrites=true&w=majority';
+require('dotenv').config();
 
-mongoose.connect(DB_URI, {
+const dbUri = process.env.DB_URI;
+
+mongoose.connect(dbUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
