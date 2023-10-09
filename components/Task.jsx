@@ -31,9 +31,7 @@ const Task = ({ taskId, taskText, taskColor, setTaskColor, onDelete, taskList, s
       }
   
       const updatedTask = await response.json();
-      console.log('Updated task:', updatedTask);
   
-      // Update the task in your task list (if needed)
       const updatedTaskList = taskList.map(task => {
         if (task.taskId === taskId) {
           return { ...task, taskName: updatedTaskName, taskColor: updatedTaskColor };
@@ -75,11 +73,6 @@ const Task = ({ taskId, taskText, taskColor, setTaskColor, onDelete, taskList, s
   }
 
   const handleEdit = () => {
-    console.log('\n');
-    console.log('taskid:', taskId);
-    console.log('taskText:', taskText);
-    console.log('taskColor:', taskColor);
-    console.log('\n');
     setSelectedColor(taskColor);
     setTaskDescription(taskText);
     setIsModalVisible(true);

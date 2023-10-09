@@ -12,10 +12,7 @@ const Home = () => {
   const [task, setTask] = useState();
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedColor, setSelectedColor] = useState(null);
-  const [taskId, setTaskId] = useState(3)
   const [taskColor, setTaskColor] = useState("#FFF");
-
-  console.log('List of tasks: ', taskList);
 
   useEffect(() => {
     fetchTasks();
@@ -28,7 +25,6 @@ const Home = () => {
         throw new Error('Failed to fetch tasks');
       }
       const data = await response.json();
-      console.log('fetched data: ', data);
       setTaskList(data); 
     } catch (error) {
       console.error('Error fetching tasks:', error);
@@ -57,7 +53,6 @@ const Home = () => {
         }
 
         const newTask = await response.json();
-        console.log('Created task:', newTask);
         setTaskName(null);
         setTaskColor(null);
         setModalVisible(false);
@@ -80,11 +75,9 @@ const Home = () => {
       }
   
       const updatedTaskList = taskList.filter(item => item.taskId !== taskId);
-      console.log('taskList after deletion: ', updatedTaskList);
       setTaskList(updatedTaskList);
       setTask(null);
       setSelectedColor(null);
-      console.log('deleted task with id: ', taskId);
     } catch (error) {
       console.error('Error deleting task:', error);
     }
