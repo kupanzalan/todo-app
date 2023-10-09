@@ -1,4 +1,24 @@
 const mongoose = require('mongoose');
+const path = require('path');
+
+const envPath = path.join(__dirname, '../.env');
+require('dotenv').config({ path: envPath });
+
+const dbUri = process.env.DB_URI;
+
+const connectionParams = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}
+
+mongoose
+  .connect(dbUri, connectionParams)
+  .then(() => {
+    console.info('connected to db');
+  })
+  .catch((e) => {
+    console.log(`error: ${e}`);
+  });
 
 const taskSchema = new mongoose.Schema({
   taskName: String,
